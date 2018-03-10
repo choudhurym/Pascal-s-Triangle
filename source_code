@@ -1,0 +1,57 @@
+#include<stdio.h>
+
+//function prototypes
+long long factorial(int input);
+int readInt(void);
+
+//main function
+int main()
+{
+	int input = 0;
+	printf("Please enter an integer value (0-20): ");
+	input = readInt();
+	if( input < 0 || input > 20)
+	{
+		printf("Invalid input");
+
+	}
+	else
+	{
+		int i, j;
+		long long temp;
+		
+		for( i = 0; i < input; i++)
+		{	
+			//for factorial computation to print out pascal's triangle
+			for( j = 0; j <= i; j++)
+			{
+				temp = factorial(i)/(factorial(i - j) * factorial(j));
+				printf("%lld ",temp);				
+			}
+			printf("\n");
+		}
+	}
+}
+//Recursion
+long long factorial(int input)
+{
+	if ( input == 0 || input == 1)
+		return 1;
+	else
+		return input * factorial(input - 1);
+}
+//Returns integer and read from standard input
+int readInt()
+{
+	int c = 0;
+	int i = 0;
+  
+	while( (c = getchar()) != EOF && c != '\n' )
+	{
+		if( c >= '0' && c <= '9')	
+			i = i * 10 + (c - '0');	
+	}
+
+	return i;
+}
+
